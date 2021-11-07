@@ -113,15 +113,13 @@ export default {
       this.data = []
       for (const staff of this.staffs) {
         const currentOffice = this.offices.find(office => office.id === staff.office_id)
-        const currentOfficeCoordinates = currentOffice.coordinates
         const homeCoordinates = await this.getCoordinates(staff.home_address)
-        const currentOfficeDistance = this.getDistance(homeCoordinates.coordinates, currentOfficeCoordinates.coordinates)
+        const currentOfficeDistance = this.getDistance(homeCoordinates, currentOffice.coordinates)
         const resltList = []
         for (const office of this.offices) {
-          const officeCoordinates = office.coordinates
           resltList.push({
             name: office.office_name,
-            dis: this.getDistance(homeCoordinates.coordinates, officeCoordinates.coordinates)
+            dis: this.getDistance(homeCoordinates, office.coordinates)
           })
         }
         // eslint-disable-next-line array-callback-return
@@ -170,9 +168,7 @@ export default {
     async getCoordinates(address) {
       const url = `https://msearch.gsi.go.jp/address-search/AddressSearch?q=${address}`
       const response = await this.$axios.$get(url)
-      return {
-        coordinates: response[0].geometry.coordinates
-      }
+      return response[0].geometry.coordinates
     }
   }
 }
