@@ -6,7 +6,7 @@
         ファイルをアップロード
       </h2>
       <b-field class="file is-primary" :class="{ 'has-name': !!staff_data_file }">
-        <b-upload v-model="staff_data_file" class="file-label" drag-drop>
+        <b-upload v-model="staff_data_file" class="file-label">
           <span class="file-cta">
             <b-icon class="file-icon" icon="upload" />
             <span class="file-label">個人情報</span>
@@ -16,9 +16,11 @@
           </span>
         </b-upload>
       </b-field>
-      {{ staffs }}
+      <p v-if="staffs.length > 0">
+        {{ staffs.length }} 件
+      </p>
       <b-field class="file is-primary" :class="{ 'has-name': !!office_data_file }">
-        <b-upload v-model="office_data_file" class="file-label" drag-drop>
+        <b-upload v-model="office_data_file" class="file-label">
           <span class="file-cta">
             <b-icon class="file-icon" icon="upload" />
             <span class="file-label">オフィス情報</span>
@@ -28,7 +30,9 @@
           </span>
         </b-upload>
       </b-field>
-      {{ offices }}
+      <p v-if="offices.length > 0">
+        {{ offices.length }} 件
+      </p>
     </div>
     <div v-if="office_data_file && staff_data_file" class="section">
       <b-button class="is-large" type="is-danger" expanded outlined @click="upload()">
@@ -59,17 +63,6 @@ export default {
     return {
       offices: [],
       staffs: [],
-      // data: [
-      //   {
-      //     id: '',
-      //     home_address: '',
-      //     current_office_name: '',
-      //     current_office_distance: '',
-      //     satellite_office_name: '',
-      //     satellite_office_distance: '',
-      //     reduced_distance: ''
-      //   }
-      // ],
       data: [],
       isUpload: '',
       staff_data_file: null,
@@ -114,15 +107,18 @@ export default {
       this.isUpload = true
     },
     async btn() {
+      for (let index = 0; index < this.offices.length; index++) {
+        this.offices[index].coordinates = await this.getCoordinates(this.offices[index].office_address)
+      }
       this.data = []
       for (const staff of this.staffs) {
         const currentOffice = this.offices.find(office => office.id === staff.office_id)
-        const currentOfficeCoordinates = await this.getCoordinates(currentOffice.office_address)
+        const currentOfficeCoordinates = currentOffice.coordinates
         const homeCoordinates = await this.getCoordinates(staff.home_address)
         const currentOfficeDistance = this.getDistance(homeCoordinates.coordinates, currentOfficeCoordinates.coordinates)
         const resltList = []
         for (const office of this.offices) {
-          const officeCoordinates = await this.getCoordinates(office.office_address)
+          const officeCoordinates = office.coordinates
           resltList.push({
             name: office.office_name,
             dis: this.getDistance(homeCoordinates.coordinates, officeCoordinates.coordinates)
@@ -134,14 +130,15 @@ export default {
             return -1
           };
         })
-        const resobj = {}
-        resobj.id = staff.id
-        resobj.home_address = staff.home_address
-        resobj.satellite_office_name = res[1].name
-        resobj.current_office_distance = currentOfficeDistance
-        resobj.current_office_name = currentOffice.office_name
-        resobj.satellite_office_distance = res[1].dis
-        resobj.reduced_distance = (Math.round((currentOfficeDistance - res[1].dis) * 100)) / 100
+        const resobj = {
+          id: staff.id,
+          home_address: staff.home_address,
+          satellite_office_name: res[0].name,
+          current_office_distance: currentOfficeDistance,
+          current_office_name: currentOffice.office_name,
+          satellite_office_distance: res[0].dis,
+          reduced_distance: (Math.round((currentOfficeDistance - res[0].dis) * 100)) / 100
+        }
         this.data.push(resobj)
       }
     },
