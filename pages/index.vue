@@ -164,9 +164,9 @@ export default {
         const resobj = {
           id: staff.id,
           home_address: staff.home_address,
-          satellite_office_name: res[0].name,
-          current_office_distance: currentOfficeDistance,
           current_office_name: currentOffice.office_name,
+          current_office_distance: currentOfficeDistance,
+          satellite_office_name: res[0].name,
           satellite_office_distance: res[0].dis,
           reduced_distance: (Math.round((currentOfficeDistance - res[0].dis) * 100)) / 100
         }
