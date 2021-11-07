@@ -3,8 +3,11 @@
   <section class="section">
     <div class="content box">
       <h2 class="title is-5">
-        ファイルをアップロード
+        ファイルをアップロードしましょう
       </h2>
+      <p class="subtitle is-6">
+        JSON形式に対応しています。
+      </p>
       <b-field class="file is-primary" :class="{ 'has-name': !!staff_data_file }">
         <b-upload v-model="staff_data_file" class="file-label">
           <span class="file-cta">
@@ -34,22 +37,41 @@
         {{ offices.length }} 件
       </p>
     </div>
-    <div v-if="office_data_file && staff_data_file" class="section">
-      <b-button class="is-large" type="is-danger" expanded outlined @click="upload()">
-        ファイルを読み込む
-      </b-button>
+    <div class="columns">
+      <div class="column">
+        <div v-if="office_data_file && staff_data_file">
+          <b-button class="is-large" type="is-info" expanded outlined @click="upload()">
+            ファイルを読み込む
+          </b-button>
+        </div>
+      </div>
+      <div class="column">
+        <b-button
+          v-if="isUpload"
+          class="is-large"
+          type="is-danger"
+          expanded
+          outlined
+          @click="btn()"
+        >
+          計算する ( {{ data.length }} 件)
+        </b-button>
+      </div>
+      <div class="column">
+        <b-button
+          v-if="data.length > 0 && data.length >= staffs.length"
+          class="is-large"
+          type="is-dark"
+          expanded
+          outlined
+          @click="json2csv(data)"
+        >
+          結果をCSVで表示する
+        </b-button>
+      </div>
     </div>
-    <div class="section">
-      <b-button
-        v-if="isUpload"
-        class="is-large"
-        type="is-danger"
-        expanded
-        outlined
-        @click="btn()"
-      >
-        計算する
-      </b-button>
+    <div v-if="csvData" class="box" style="white-space:pre-wrap;">
+      {{ csvData }}
     </div>
     <b-table v-if="data" :data="data" :columns="columns" />
   </section>
@@ -61,6 +83,7 @@ import { point } from '@turf/helpers'
 export default {
   data() {
     return {
+      csvData: null,
       offices: [],
       staffs: [],
       data: [],
@@ -101,6 +124,16 @@ export default {
   },
   computed: {},
   methods: {
+    json2csv(json) {
+      let ret = Object.keys(json[1]).join(',') + '\n'
+      ret += json.map(function(d) {
+        return Object.keys(d).map(function(key) {
+          return d[key]
+        }).join(',')
+      }).join('\n')
+      this.csvData = ret
+      return ret
+    },
     upload() {
       this.uploadStaffData()
       this.uploadOfficeData()
