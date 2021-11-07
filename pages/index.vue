@@ -119,13 +119,13 @@ export default {
         const currentOffice = this.offices.find(office => office.id === staff.office_id)
         const currentOfficeCoordinates = await this.getCoordinates(currentOffice.office_address)
         const homeCoordinates = await this.getCoordinates(staff.home_address)
-        const currentOfficeDistance = this.getDistance([homeCoordinates.coordinates[0], homeCoordinates.coordinates[1]], [currentOfficeCoordinates.coordinates[0], currentOfficeCoordinates.coordinates[1]])
+        const currentOfficeDistance = this.getDistance(homeCoordinates.coordinates, currentOfficeCoordinates.coordinates)
         const resltList = []
         for (const office of this.offices) {
           const officeCoordinates = await this.getCoordinates(office.office_address)
           resltList.push({
             name: office.office_name,
-            dis: this.getDistance([homeCoordinates.coordinates[0], homeCoordinates.coordinates[1]], [officeCoordinates.coordinates[0], officeCoordinates.coordinates[1]])
+            dis: this.getDistance(homeCoordinates.coordinates, officeCoordinates.coordinates)
           })
         }
         // eslint-disable-next-line array-callback-return
