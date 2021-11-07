@@ -1,0 +1,314 @@
+{
+  "staffs": [
+    {
+      "id": "1",
+      "office_id": "332046",
+      "home_address": "高梁市松原通2043"
+    },
+    {
+      "id": "2",
+      "office_id": "334235",
+      "home_address": "都窪郡早島町大字前潟360-1"
+    },
+    {
+      "id": "3",
+      "office_id": "333468",
+      "home_address": "久米郡美咲町原田1735"
+    },
+    {
+      "id": "4",
+      "office_id": "332160",
+      "home_address": "赤磐市下市344"
+    },
+    {
+      "id": "5",
+      "office_id": "332089",
+      "home_address": "岡山市東区西大寺南1-2-4"
+    },
+    {
+      "id": "6",
+      "office_id": "336068",
+      "home_address": "岡山市中区浜3-7-15"
+    },
+    {
+      "id": "7",
+      "office_id": "332101",
+      "home_address": "美作市栄町38-2"
+    },
+    {
+      "id": "8",
+      "office_id": "332071",
+      "home_address": "岡山市北区大供1-1-1"
+    },
+    {
+      "id": "9",
+      "office_id": "334618",
+      "home_address": "苫田郡鏡野町竹田660"
+    },
+    {
+      "id": "10",
+      "office_id": "336637",
+      "home_address": "笠岡市中央町1-1"
+    },
+    {
+      "id": "11",
+      "office_id": "331007",
+      "home_address": "真庭市久世2927-2"
+    },
+    {
+      "id": "12",
+      "office_id": "332119",
+      "home_address": "玉野市宇野1-27-1"
+    },
+    {
+      "id": "13",
+      "office_id": "332020",
+      "home_address": "真庭郡新庄村2008-1"
+    },
+    {
+      "id": "14",
+      "office_id": "335860",
+      "home_address": "久米郡久米南町下弓削502-1"
+    },
+    {
+      "id": "15",
+      "office_id": "332143",
+      "home_address": "備前市東片上126"
+    },
+    {
+      "id": "16",
+      "office_id": "331023",
+      "home_address": "新見市新見310-3"
+    },
+    {
+      "id": "17",
+      "office_id": "331031",
+      "home_address": "和気郡和気町尺所555"
+    },
+    {
+      "id": "18",
+      "office_id": "332038",
+      "home_address": "井原市井原町311-1"
+    },
+    {
+      "id": "19",
+      "office_id": "334456",
+      "home_address": "岡山市北区大供1-1-1"
+    },
+    {
+      "id": "20",
+      "office_id": "332097",
+      "home_address": "浅口市鴨方町六条院中3050"
+    },
+    {
+      "id": "21",
+      "office_id": "336661",
+      "home_address": "勝田郡勝央町勝間田201"
+    },
+    {
+      "id": "22",
+      "office_id": "332054",
+      "home_address": "英田郡西粟倉村大字影石2"
+    },
+    {
+      "id": "23",
+      "office_id": "331015",
+      "home_address": "加賀郡吉備中央町豊野1-2"
+    },
+    {
+      "id": "24",
+      "office_id": "332151",
+      "home_address": "岡山市南区浦安南町495-5"
+    },
+    {
+      "id": "25",
+      "office_id": "332127",
+      "home_address": "津山市山北520"
+    },
+    {
+      "id": "26",
+      "office_id": "336238",
+      "home_address": "小田郡矢掛町矢掛3018"
+    },
+    {
+      "id": "27",
+      "office_id": "336220",
+      "home_address": "瀬戸内市邑久町尾張300-1"
+    },
+    {
+      "id": "28",
+      "office_id": "332135",
+      "home_address": "浅口郡里庄町大字里見1107-2"
+    },
+    {
+      "id": "29",
+      "office_id": "336815",
+      "home_address": "総社市中央1-1-1"
+    },
+    {
+      "id": "30",
+      "office_id": "331040",
+      "home_address": "倉敷市西中新田640"
+    },
+    {
+      "id": "31",
+      "office_id": "336432",
+      "home_address": "勝田郡奈義町豊沢306-1"
+    },
+    {
+      "id": "32",
+      "office_id": "332071",
+      "home_address": "岡山市南区浦安南町495-5"
+    },
+    {
+      "id": "33",
+      "office_id": "336815",
+      "home_address": "岡山市東区西大寺南1-2-4"
+    },
+    {
+      "id": "34",
+      "office_id": "332151",
+      "home_address": "久米郡久米南町下弓削502-1"
+    },
+    {
+      "id": "35",
+      "office_id": "333468",
+      "home_address": "備前市東片上126"
+    },
+    {
+      "id": "36",
+      "office_id": "335860",
+      "home_address": "瀬戸内市邑久町尾張300-1"
+    },
+    {
+      "id": "37",
+      "office_id": "332020",
+      "home_address": "総社市中央1-1-1"
+    },
+    {
+      "id": "38",
+      "office_id": "331023",
+      "home_address": "笠岡市中央町1-1"
+    },
+    {
+      "id": "39",
+      "office_id": "332143",
+      "home_address": "井原市井原町311-1"
+    },
+    {
+      "id": "40",
+      "office_id": "332089",
+      "home_address": "勝田郡勝央町勝間田201"
+    },
+    {
+      "id": "41",
+      "office_id": "331040",
+      "home_address": "英田郡西粟倉村大字影石2"
+    },
+    {
+      "id": "42",
+      "office_id": "336637",
+      "home_address": "浅口市鴨方町六条院中3050"
+    },
+    {
+      "id": "43",
+      "office_id": "332097",
+      "home_address": "久米郡美咲町原田1735"
+    },
+    {
+      "id": "44",
+      "office_id": "334456",
+      "home_address": "美作市栄町38-2"
+    },
+    {
+      "id": "45",
+      "office_id": "336238",
+      "home_address": "都窪郡早島町大字前潟360-1"
+    },
+    {
+      "id": "46",
+      "office_id": "334618",
+      "home_address": "小田郡矢掛町矢掛3018"
+    },
+    {
+      "id": "47",
+      "office_id": "336661",
+      "home_address": "浅口郡里庄町大字里見1107-2"
+    },
+    {
+      "id": "48",
+      "office_id": "332119",
+      "home_address": "和気郡和気町尺所555"
+    },
+    {
+      "id": "49",
+      "office_id": "332038",
+      "home_address": "勝田郡奈義町豊沢306-1"
+    },
+    {
+      "id": "50",
+      "office_id": "336220",
+      "home_address": "倉敷市西中新田640"
+    },
+    {
+      "id": "51",
+      "office_id": "331031",
+      "home_address": "岡山市北区大供1-1-1"
+    },
+    {
+      "id": "52",
+      "office_id": "336068",
+      "home_address": "新見市新見310-3"
+    },
+    {
+      "id": "53",
+      "office_id": "334235",
+      "home_address": "赤磐市下市344"
+    },
+    {
+      "id": "54",
+      "office_id": "331015",
+      "home_address": "玉野市宇野1-27-1"
+    },
+    {
+      "id": "55",
+      "office_id": "332160",
+      "home_address": "高梁市松原通2043"
+    },
+    {
+      "id": "56",
+      "office_id": "331007",
+      "home_address": "真庭市久世2927-2"
+    },
+    {
+      "id": "57",
+      "office_id": "332127",
+      "home_address": "津山市山北520"
+    },
+    {
+      "id": "58",
+      "office_id": "332054",
+      "home_address": "加賀郡吉備中央町豊野1-2"
+    },
+    {
+      "id": "59",
+      "office_id": "332135",
+      "home_address": "真庭郡新庄村2008-1"
+    },
+    {
+      "id": "60",
+      "office_id": "336432",
+      "home_address": "苫田郡鏡野町竹田660"
+    },
+    {
+      "id": "61",
+      "office_id": "332101",
+      "home_address": "岡山市北区大供1-1-1"
+    },
+    {
+      "id": "62",
+      "office_id": "332046",
+      "home_address": "岡山市中区浜3-7-15"
+    }
+  ]
+}
