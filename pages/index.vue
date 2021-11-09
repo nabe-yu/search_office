@@ -15,13 +15,10 @@
             <span class="file-label">個人情報</span>
           </span>
           <span v-if="staff_data_file" class="file-name">
-            {{ staff_data_file.name }}
+            {{ staff_data_file.name }} ({{ staffs.length }})
           </span>
         </b-upload>
       </b-field>
-      <p v-if="staffs.length > 0">
-        {{ staffs.length }} 件
-      </p>
       <b-field class="file is-primary" :class="{ 'has-name': !!office_data_file }">
         <b-upload v-model="office_data_file" class="file-label">
           <span class="file-cta">
@@ -29,13 +26,10 @@
             <span class="file-label">オフィス情報</span>
           </span>
           <span v-if="office_data_file" class="file-name">
-            {{ office_data_file.name }}
+            {{ office_data_file.name }} ({{ offices.length }})
           </span>
         </b-upload>
       </b-field>
-      <p v-if="offices.length > 0">
-        {{ offices.length }} 件
-      </p>
     </div>
     <div class="columns">
       <div class="column">
@@ -73,7 +67,7 @@
     <div v-if="csvData" class="box" style="white-space:pre-wrap;">
       {{ csvData }}
     </div>
-    <b-table v-if="data" :data="data" :columns="columns" />
+    <b-table v-if="data.length === staffs.length" :data="data" :columns="columns" />
   </section>
 </template>
 
@@ -100,12 +94,8 @@ export default {
           label: '自宅'
         },
         {
-          field: 'current_office_name',
+          field: 'current_office_address',
           label: '現在の勤務地'
-        },
-        {
-          field: 'current_office_distance',
-          label: '現在の勤務地までの距離'
         },
         {
           field: 'satellite_office_name',
@@ -114,10 +104,6 @@ export default {
         {
           field: 'satellite_office_distance',
           label: '最寄りオフィスまでの距離'
-        },
-        {
-          field: 'reduced_distance',
-          label: '削減された距離'
         }
       ]
     }
@@ -145,9 +131,17 @@ export default {
       }
       this.data = []
       for (const staff of this.staffs) {
-        const currentOffice = this.offices.find(office => office.id === staff.office_id)
         const homeCoordinates = await this.getCoordinates(staff.home_address)
-        const currentOfficeDistance = this.getDistance(homeCoordinates, currentOffice.coordinates)
+        if (homeCoordinates.length < 2) {
+          const resobj = {
+            id: staff.id,
+            home_address: staff.home_address,
+            current_office_address: staff.current_office_address,
+            satellite_office_name: '計算不能',
+            satellite_office_distance: -1
+          }
+          this.data.push(resobj)
+        }
         const resltList = []
         for (const office of this.offices) {
           resltList.push({
@@ -164,11 +158,9 @@ export default {
         const resobj = {
           id: staff.id,
           home_address: staff.home_address,
-          current_office_name: currentOffice.office_name,
-          current_office_distance: currentOfficeDistance,
+          current_office_address: staff.current_office_address,
           satellite_office_name: res[0].name,
-          satellite_office_distance: res[0].dis,
-          reduced_distance: (Math.round((currentOfficeDistance - res[0].dis) * 100)) / 100
+          satellite_office_distance: res[0].dis
         }
         this.data.push(resobj)
       }
