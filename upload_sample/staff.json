@@ -2,8 +2,8 @@
   "staffs": [
     {
       "id": "1",
-      "home_address": "高梁市松原通2043",
-      "current_office_address": "岡山市北区大供1-1-1"
+      "home_address": "高市松原通2043",
+      "current_office_address": "北大供1-1-1"
     },
     {
       "id": "2",
@@ -162,13 +162,13 @@
     },
     {
       "id": "33",
-      "home_address": "岡山市東区西大寺南1-2-4",
-      "current_office_address": "浅口郡里庄町大字里見1107-2"
+      "home_address": "ロ",
+      "current_office_address": "1107-2"
     },
     {
       "id": "34",
       "home_address": "久米郡久米南町下弓削502-1",
-      "current_office_address": "和気郡和気町尺所555"
+      "current_office_address": "和気所555"
     },
     {
       "id": "35",
