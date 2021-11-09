@@ -48,7 +48,7 @@
           outlined
           @click="btn()"
         >
-          計算する ( {{ data.length }} 件)
+          計算する
         </b-button>
       </div>
       <div class="column">
@@ -58,16 +58,22 @@
           type="is-dark"
           expanded
           outlined
-          @click="json2csv(data)"
+          @click="downloadCsv()"
         >
-          結果をCSVで表示する
+          結果をCSVで保存する
         </b-button>
       </div>
     </div>
-    <div v-if="csvData" class="box" style="white-space:pre-wrap;">
-      {{ csvData }}
-    </div>
-    <b-table v-if="data.length === staffs.length" :data="data" :columns="columns" />
+    <!-- <b-table v-if="data.length === staffs.length" :data="data" :columns="columns" /> -->
+    <b-progress
+      v-if="isUpload"
+      type="is-info"
+      show-value
+      size="is-large"
+      :value="(data.length / staffs.length) * 100"
+      :rounded="false"
+      format="percent"
+    />
   </section>
 </template>
 
@@ -77,7 +83,6 @@ import { point } from '@turf/helpers'
 export default {
   data() {
     return {
-      csvData: null,
       offices: [],
       staffs: [],
       data: [],
@@ -110,15 +115,17 @@ export default {
   },
   computed: {},
   methods: {
-    json2csv(json) {
-      let ret = Object.keys(json[1]).join(',') + '\n'
-      ret += json.map(function(d) {
-        return Object.keys(d).map(function(key) {
-          return d[key]
-        }).join(',')
-      }).join('\n')
-      this.csvData = ret
-      return ret
+    downloadCsv() {
+      let csv = 'ID,自宅住所,現在の勤務地,最寄りオフィス,自宅から最寄りオフィスまでの距離\n'
+      this.data.forEach((el) => {
+        const line = `${el.id},${el.home_address},${el.current_office_address},${el.satellite_office_name},${el.satellite_office_distance}\n`
+        csv += line
+      })
+      const blob = new Blob([csv], { type: 'text/csv' })
+      const link = document.createElement('a')
+      link.href = window.URL.createObjectURL(blob)
+      link.download = 'Result.csv'
+      link.click()
     },
     upload() {
       this.uploadStaffData()
