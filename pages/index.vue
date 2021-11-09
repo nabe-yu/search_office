@@ -148,6 +148,7 @@ export default {
             satellite_office_distance: -1
           }
           this.data.push(resobj)
+          continue
         }
         const resltList = []
         for (const office of this.offices) {
