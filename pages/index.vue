@@ -201,7 +201,11 @@ export default {
     async getCoordinates(address) {
       const url = `https://msearch.gsi.go.jp/address-search/AddressSearch?q=${address}`
       const response = await this.$axios.$get(url)
-      return response[0].geometry.coordinates
+      if (response.length > 0) {
+        return response[0].geometry.coordinates
+      } else {
+        return []
+      }
     }
   }
 }
